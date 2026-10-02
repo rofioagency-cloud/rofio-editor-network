@@ -1,0 +1,509 @@
+:root {
+    --bg-dark: #050505;
+    --bg-charcoal: #121212;
+    --rofio-yellow: #FFB800;
+    --rofio-orange: #FF5C00;
+    --text-white: #F0F0F0;
+    --text-muted: #A0A0A0;
+    
+    --glass-bg: rgba(25, 25, 25, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.03);
+    
+    --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background Effects */
+.background-effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.noise-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.12;
+    background: radial-gradient(circle, var(--rofio-orange) 0%, transparent 70%);
+}
+
+.glow-orb.top-left {
+    top: -30vmax;
+    left: -30vmax;
+}
+
+.glow-orb.bottom-right {
+    bottom: -30vmax;
+    right: -30vmax;
+    background: radial-gradient(circle, var(--rofio-yellow) 0%, transparent 70%);
+}
+
+/* Typography */
+h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+}
+
+/* Glass Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--glass-highlight);
+}
+
+/* Navigation */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.brand {
+    font-size: 1.1rem;
+}
+
+.divider {
+    color: var(--glass-border);
+    font-weight: 300;
+}
+
+.sub-brand {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-white);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-cta:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.whatsapp-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Layout */
+.form-only-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 5% 60px;
+    width: 100%;
+}
+
+/* Form Section */
+.form-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-container {
+    width: 100%;
+    padding: 3rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.form-contact-notice {
+    margin-top: 1.2rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+.highlight-number {
+    color: var(--rofio-yellow);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.highlight-number:hover {
+    color: var(--rofio-orange);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    color: #E0E0E0;
+}
+
+.required {
+    color: var(--rofio-orange);
+}
+
+.helper-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+}
+
+/* Inputs */
+.glass-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: var(--text-white);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    appearance: none;
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: var(--rofio-yellow);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.1);
+}
+
+/* Custom Select */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0A0A0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+select.glass-input {
+    padding-right: 40px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+select.glass-input option {
+    background: var(--bg-charcoal);
+    color: var(--text-white);
+}
+
+/* Segmented Control */
+.segmented-control {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.segment {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+}
+
+.segment input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+}
+
+.segment span {
+    display: block;
+    text-align: center;
+    padding: 14px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.segment:hover span {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.segment.active span {
+    background: rgba(255, 184, 0, 0.1);
+    border-color: var(--rofio-yellow);
+    color: var(--rofio-yellow);
+}
+
+.submit-area {
+    margin-top: 2rem;
+}
+
+/* Buttons */
+.primary-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--rofio-yellow), var(--rofio-orange));
+    color: var(--bg-dark);
+    font-family: var(--font-main);
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.primary-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(255, 92, 0, 0.2);
+}
+
+.primary-btn:hover::after {
+    left: 100%;
+}
+
+/* Success State */
+.success-state {
+    text-align: center;
+    padding: 3rem 0 1rem;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.success-state p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.success-state .small-text {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loader */
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--bg-dark);
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .glass-nav {
+        padding: 0 16px;
+    }
+    
+    .form-only-main {
+        padding: 85px 16px 40px;
+    }
+    
+    .form-container {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 430px) {
+    .logo {
+        gap: 0.3rem;
+    }
+    
+    .brand {
+        font-size: 1rem;
+    }
+    
+    .sub-brand {
+        font-size: 0.7rem;
+    }
+    
+    .nav-cta {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .whatsapp-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .form-header {
+        margin-bottom: 2rem;
+    }
+    
+    .segmented-control {
+        gap: 0.5rem;
+    }
+    
+    .segment span {
+        padding: 12px 6px;
+        font-size: 0.85rem;
+    }
+    
+    .glass-input {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .primary-btn {
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav-cta-text {
+        display: none;
+    }
+    
+    .nav-cta {
+        padding: 8px;
+    }
+}
